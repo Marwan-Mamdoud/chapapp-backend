@@ -1,7 +1,7 @@
+import { sign } from "jsonwebtoken";
 import UserModel from "../models/UserModel.js";
 // import { env } from "dotenv";
 import bcrypt from "bcryptjs";
-import sign from "jsonwebtoken";
 // import fs from "fs";
 const maxAge = 1 * 24 * 60 * 60 * 1000;
 
@@ -48,7 +48,7 @@ export const loggIn = async (req, res, next) => {
         .status(400)
         .json({ message: "email and password is required" });
     }
-    const user = await User.UserModel({ email: email });
+    const user = await UserModel({ email: email });
     if (!user) {
       return res.status(400).json({ message: "there is no email like this" });
     }
