@@ -1,10 +1,11 @@
-import { sign } from "jsonwebtoken";
+import pkg from "jsonwebtoken";
 import UserModel from "../models/UserModel.js";
 // import { env } from "dotenv";
 import bcrypt from "bcryptjs";
 // import fs from "fs";
 const maxAge = 1 * 24 * 60 * 60 * 1000;
 
+const { sign } = pkg;
 const createToken = async (userId, email) => {
   return sign({ email, userId }, process.env.JWT_SECRET, {});
 };
