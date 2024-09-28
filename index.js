@@ -11,18 +11,21 @@ import channelRouter from "./routes/ChannelRoutes.js";
 // import setupSocket from "./socket.js";
 const server = express();
 
+server.use(function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 server.use(
   cors({
-    origin: "*",
+    origin: "https://chatapp-frontend-olive.vercel.app", // استبدل بالنطاق الصحيح
     methods: ["GET", "POST", "PUT", "DELETE"],
-    // allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    credentials: true, // يسمح بإرسال الاعتمادات
   })
 );
-
-// const serverSocket = server.listen(process.env.PORT, () => {
-//   console.log("Server Connect successful✅");
-// });
 
 server.listen(5000, () => {
   console.log("Server Connect successful✅");
