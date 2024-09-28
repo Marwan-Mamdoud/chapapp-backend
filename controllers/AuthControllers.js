@@ -2,7 +2,7 @@ import UserModel from "../models/UserModel.js";
 // import { env } from "dotenv";
 import bcrypt from "bcryptjs";
 import sign from "jsonwebtoken";
-import fs from "fs";
+// import fs from "fs";
 const maxAge = 1 * 24 * 60 * 60 * 1000;
 
 const createToken = async (userId, email) => {
@@ -126,24 +126,24 @@ export const updateProfile = async (req, res, next) => {
 };
 
 export const updateImage = async (req, res, next) => {
-  const userId = req.userId;
-  const { file } = req;
-  if (!file) {
-    return res.status(400).json({ message: "File is required" });
-  }
+  // const userId = req.userId;
+  // const { file } = req;
+  // if (!file) {
+  //   return res.status(400).json({ message: "File is required" });
+  // }
   try {
-    let fileName = `uploads/images` + "/" + file.originalname;
-    fs.renameSync(file.path, fileName);
-    const userUpdata = await UserModel.findByIdAndUpdate(
-      userId,
-      {
-        image: fileName,
-      },
-      { new: true, runValidators: true }
-    );
+    //   let fileName = `uploads/images` + "/" + file.originalname;
+    //   fs.renameSync(file.path, fileName);
+    //   const userUpdata = await UserModel.findByIdAndUpdate(
+    //     userId,
+    //     {
+    //       image: fileName,
+    //     },
+    //     { new: true, runValidators: true }
+    //   );
     return res.status(201).json({
       Message: "Done Updata imageProfile",
-      image: userUpdata.image,
+      image: "hph",
     });
   } catch (error) {
     console.log(error.message);
@@ -154,10 +154,10 @@ export const updateImage = async (req, res, next) => {
 export const deleteImage = async (req, res, next) => {
   const userId = req.userId;
   const user = await UserModel.findById(userId);
-  if (user.image) {
-    fs.unlinkSync(user.image);
-  }
-  user.image = null;
-  user.save();
+  // if (user.image) {
+  //   fs.unlinkSync(user.image);
+  // }
+  // user.image = null;
+  // user.save();
   return res.status(201).json({ message: "Done delete image profile" });
 };

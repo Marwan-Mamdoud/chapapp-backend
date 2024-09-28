@@ -1,4 +1,4 @@
-import { mkdir, rename } from "fs";
+// import { mkdir, rename } from "fs";
 import MessageModel from "../models/MessageModel.js";
 
 export const getAllMessages = async (req, res, next) => {
@@ -30,13 +30,13 @@ export const uploadsFile = async (req, res, next) => {
     if (!req.file) {
       return res.status(400).json({ message: "file is required.." });
     }
-    let file = req.file;
-    console.log(file);
-    const fileDir = `uploads/files/${file.originalname}`;
-    const fileName = `${fileDir}/${file.originalname}`;
-    mkdir(fileDir, { recursive: true });
-    rename(req.file.path, fileName);
-    return res.status(200).json({ filePath: fileName });
+    // let file = req.file;
+    // console.log(file);
+    // const fileDir = `uploads/files/${file.originalname}`;
+    // const fileName = `${fileDir}/${file.originalname}`;
+    // mkdir(fileDir, { recursive: true });
+    // rename(req.file.path, fileName);
+    return res.status(200).json({ filePath: "dfasdfads" });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ Message: "Controller Server Error" });

@@ -5,8 +5,8 @@ import {
   getAllMessages,
   uploadsFile,
 } from "../controllers/MessageController.js";
-import multer from "multer";
-const upload = multer({ dest: "uploads/files" });
+// import multer from "multer";
+// const upload = multer({ dest: "uploads/files" });
 const MessagesRouter = Router();
 
 MessagesRouter.post(
@@ -19,7 +19,7 @@ MessagesRouter.post(
 MessagesRouter.post(
   "/upload-files",
   isAuth,
-  upload.single("file"),
+  // upload.single("file"),
   uploadsFile
   // MessageController.uploadsFile
 );
